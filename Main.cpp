@@ -33,8 +33,8 @@ void randomChoise(){
      try{
      u_long b=rand() % 15;
      operat=operats.at(b);
-     double c=rand()/1000.0;
-     double d=rand()/1000.0;
+     double c=(rand()%100000)/1000.0;
+     double d=(rand()%100000)/1000.0;
      if(b<14){
        u_long a1= rand() % 11;
        u_long b1= rand() % 11;
