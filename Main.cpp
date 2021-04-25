@@ -89,7 +89,7 @@ void randomChoise(){
          cout << a << operat << d<<"=" << a*d<< endl;
       }
      }
-        catch(Exception& e){
+        catch(exception& e){
             cout<<e.what()<<endl;
         }
      
