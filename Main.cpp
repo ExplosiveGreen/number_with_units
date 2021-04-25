@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <stdlib.h>
 #include <time.h> 
+#include <vector>
 using namespace std;
 
 #include "NumberWithUnits.hpp"
@@ -83,7 +84,7 @@ void randomChoise(){
      }
       else{
            int a1= rand() % 11;
-       NumberWithUnits b1{c,units.at(a1)};
+       NumberWithUnits a{c,units.at(a1)};
          cout << a << operat << d<<"=" << a*d<< endl;
       }
      
@@ -106,7 +107,7 @@ int main() {
     string operat;
     cout << "file found! " << endl;
     while(true){
-    cout << "choose an operator: (+,-,==,!=,<=,>=,<,>,+=,-=,*=,++,--,<<,*,exit)" << endl;
+    cout << "choose an operator: (+,-,==,!=,<=,>=,<,>,+=,-=,*=,++,--,<<,*,rand,exit)" << endl;
     cin >> operat;
     if(operat == "+"){
             cout << "insert unit (format example: 1.1 km or 1.1[km]): ";
@@ -213,6 +214,9 @@ int main() {
     cout << "insert another unit (format example: 100 cm or 100[cm]): ";
     cin >> b;
         cout << "first: " << a << " second: " << b << endl;
+    }
+    else if(operat=="rand"){
+     randomChoise();   
     }
     else if(operat=="exit"){
         break;
