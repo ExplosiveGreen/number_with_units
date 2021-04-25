@@ -30,13 +30,13 @@ void randomChoise(){
     const vector<string>operats={"+","-","==","!=","<=",">=","<",">","+=","-=","*=","++","--","<<","*"};
     string operat;
     for (int i=0;i<20;i++){
-     int b=rand() % 15;
+     u_long b=rand() % 15;
      operat=operats.at(b);
      double c=rand()/1000.0;
      double d=rand()/1000.0;
      if(b<14){
-       int a1= rand() % 11;
-       int b1= rand() % 11;
+       u_long a1= rand() % 11;
+       u_long b1= rand() % 11;
        NumberWithUnits a{c,units.at(a1)};
        NumberWithUnits b{d,units.at(b1)};  
        if(operat == "+"){
@@ -83,7 +83,7 @@ void randomChoise(){
     }
      }
       else{
-           int a1= rand() % 11;
+           u_long a1= rand() % 11;
        NumberWithUnits a{c,units.at(a1)};
          cout << a << operat << d<<"=" << a*d<< endl;
       }
