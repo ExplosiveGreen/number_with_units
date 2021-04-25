@@ -26,7 +26,7 @@ void get_file(string& str){
 void randomChoise(){
     srand (time(0));
     const vector<string>units={"km","m","cm","kg","g","ton","hour","min","sec","USD","ILS"};
-    const vector<string>operats={"+","-","==","!=","<=",">=","<",">","+=","-=","*=","++","--","<<","*"}
+    const vector<string>operats={"+","-","==","!=","<=",">=","<",">","+=","-=","*=","++","--","<<","*"};
     string operat;
     for (int i=0;i<20;i++){
      int b=rand() % 15;
@@ -35,9 +35,9 @@ void randomChoise(){
      double d=rand()/1000.0;
      if(b<14){
        int a1= rand() % 11;
-       int a2= rand() % 11;
-       NumberWithUnits b1{c,units.at(a1)};
-       NumberWithUnits b2{d,units.at(a2)};  
+       int b1= rand() % 11;
+       NumberWithUnits a{c,units.at(a1)};
+       NumberWithUnits b{d,units.at(b1)};  
        if(operat == "+"){
         cout << a << operat << b << '=' << a+b << endl;
     }
