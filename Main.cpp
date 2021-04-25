@@ -8,7 +8,7 @@ using namespace std;
 using namespace ariel;
 
 void get_file(string& str){
-    cout << "insert input file name, enter nothing for units.txt (default): ";
+    cout << "insert input file name, enter nothing for filename.txt (default): ";
     if(getline(cin, str))
     {
         if(str.empty())
