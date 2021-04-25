@@ -1,46 +1,67 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <stdexcept>
-
-
-
+#include <unordered_map>
+#include <string>
+#define TOLARENCE 0.00001
 using namespace std;
-
 namespace ariel{
+    
     class NumberWithUnits{
-
-        public:
-        NumberWithUnits(double a, string f){
+    private:
+        double num = 0;
+        string unit = "";
+    public:
+        NumberWithUnits(){}
+        NumberWithUnits(const double& number, const string& units);
+        ~NumberWithUnits() = default;
+        static void read_units(ifstream& stream);
+        static double converter(const string& from, const string& to);
+        bool operator!() const {
+            return num == 0;
         }
-        static void read_units(ifstream& file);
-        NumberWithUnits operator+(const NumberWithUnits& b) const;
+        const NumberWithUnits operator-() const {
+            return NumberWithUnits{-num, unit};
+        }
+        const NumberWithUnits operator+() const {
+            return NumberWithUnits(+num, unit);
+        }
         NumberWithUnits& operator+=(const NumberWithUnits& b);
-        NumberWithUnits operator+() const;
-        NumberWithUnits operator-(const NumberWithUnits& b);
         NumberWithUnits& operator-=(const NumberWithUnits& b);
-        NumberWithUnits operator-() const;
-
-        friend bool operator>(const NumberWithUnits& b1, const NumberWithUnits& b2);
-        friend bool operator>=(const NumberWithUnits& b1, const NumberWithUnits& b2);
-        friend bool operator<(const NumberWithUnits& b1, const NumberWithUnits& b2);
-        friend bool operator<=(const NumberWithUnits& b1, const NumberWithUnits& b2);
+        NumberWithUnits& operator*=(const NumberWithUnits& b);
+        friend const NumberWithUnits operator*(const NumberWithUnits& b, const double& mul) {
+            return NumberWithUnits(b.num * mul, b.unit);
+        }
+        friend const NumberWithUnits operator*(const double& mul, const NumberWithUnits& b) {
+            return NumberWithUnits(b.num * mul, b.unit);
+        }
+        friend NumberWithUnits operator+(const NumberWithUnits& b1, const NumberWithUnits& b2) ;
+        friend NumberWithUnits operator-(const NumberWithUnits& b1, const NumberWithUnits& b2) ;
         friend bool operator==(const NumberWithUnits& b1, const NumberWithUnits& b2);
         friend bool operator!=(const NumberWithUnits& b1, const NumberWithUnits& b2);
-        
-         NumberWithUnits& operator++();
-         NumberWithUnits operator++(int dd);
-        NumberWithUnits& operator--();
-        NumberWithUnits operator--(int dd);
-
-         friend  NumberWithUnits operator* (double b1,const NumberWithUnits& b2);
-        
-         friend std::ostream& operator<< (std::ostream& output, const NumberWithUnits& b);
-         friend std::istream& operator>> (std::istream& input , NumberWithUnits& b);
-        
-
-
-
-
+        friend bool operator<=(const NumberWithUnits& b1, const NumberWithUnits& b2);
+        friend bool operator>=(const NumberWithUnits& b1, const NumberWithUnits& b2);
+        friend bool operator<(const NumberWithUnits& b1, const NumberWithUnits& b2);
+        friend bool operator>(const NumberWithUnits& b1, const NumberWithUnits& b2);
+        friend std::ostream& operator<< (ostream& output, const NumberWithUnits& b);
+        friend std::istream& operator>> (istream& input, NumberWithUnits& b);
+        NumberWithUnits& operator++() {
+            num++;
+            return *this;
+        }
+        NumberWithUnits& operator--() {
+            num--;
+            return *this;
+        }
+        NumberWithUnits operator++(int dd) {
+            NumberWithUnits copy = *this;
+            num++;
+            return copy;
+        }
+        NumberWithUnits operator--(int dd) {
+            NumberWithUnits copy = *this;
+            num--;
+            return copy;
+        }
     };
 }
