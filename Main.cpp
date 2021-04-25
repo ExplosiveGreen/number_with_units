@@ -30,6 +30,7 @@ void randomChoise(){
     const vector<string>operats={"+","-","==","!=","<=",">=","<",">","+=","-=","*=","++","--","<<","*"};
     string operat;
     for (int i=0;i<20;i++){
+     try{
      u_long b=rand() % 15;
      operat=operats.at(b);
      double c=rand()/1000.0;
@@ -87,6 +88,10 @@ void randomChoise(){
        NumberWithUnits a{c,units.at(a1)};
          cout << a << operat << d<<"=" << a*d<< endl;
       }
+     }
+        catch(Exception& e){
+            cout<<e.what()<<endl;
+        }
      
     }
     
